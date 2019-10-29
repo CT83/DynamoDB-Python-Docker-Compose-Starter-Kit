@@ -25,7 +25,7 @@ if __name__ == '__main__':
         User.delete_table()
     User.create_table(read_capacity_units=1, write_capacity_units=1, wait=True)
 
-    print("Adding items to the table...")
+    print("Adding user to the table...")
     user = User(id=0, name="Rohan")
     user.save()
 
