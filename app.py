@@ -15,7 +15,6 @@ class User(Model):
 
 
 if __name__ == '__main__':
-    time.sleep(5)
     if not User.exists():
         print("User Table does not exist, creating one...")
         User.create_table(read_capacity_units=1, write_capacity_units=1, wait=True)
