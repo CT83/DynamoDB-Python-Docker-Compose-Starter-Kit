@@ -1,0 +1,10 @@
+botocore==1.13.2
+docutils==0.15.2
+hydra-core==0.10.0
+jmespath==0.9.4
+omegaconf==1.3.0
+pynamodb==4.1.0
+python-dateutil==2.8.0
+PyYAML==5.1.2
+six==1.12.0
+urllib3==1.25.6

@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  db:
+    container_name: dynamodb_local
+    image: amazon/dynamodb-local
+
+    # To persist the data we do - https://stackoverflow.com/a/52853294/7127317
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/
+    volumes:
+      - ./dynamodb_data:/home/dynamodblocal/data
+
+  app:
+    container_name: app
+    build: .
+    env_file:
+      - .env
+
+
+volumes:
+  dynamodb_data:
