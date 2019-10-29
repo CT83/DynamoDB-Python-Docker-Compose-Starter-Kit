@@ -1,0 +1,13 @@
+language: python
+
+cache: pip
+
+services:
+  - docker
+
+python:
+  - "3.8"
+  - "3.7"
+
+script:
+  - docker-compose up --build
