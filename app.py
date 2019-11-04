@@ -20,7 +20,7 @@ class User(Model):
 @hydra.main(config_path='env-config.yml')
 def main(cfg):
     print("Running main..")
-    db_path = cfg.db.path or "http://localhost:8000"
+    db_path = cfg.db.path
     User.Meta.host = db_path
     print("Connecting to {}...".format(User.Meta.host))
 
