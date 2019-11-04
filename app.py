@@ -1,3 +1,4 @@
+import hydra
 from pynamodb.attributes import (
     UnicodeAttribute,
     NumberAttribute)
@@ -7,7 +8,7 @@ from pynamodb.models import Model
 class User(Model):
     class Meta:
         table_name = 'User'
-        host = "http://database:8000"
+        host = None
 
     id = NumberAttribute(hash_key=True)
     name = UnicodeAttribute()
@@ -16,7 +17,13 @@ class User(Model):
         return "<User {} name:{}>".format(self.id, self.name)
 
 
-if __name__ == '__main__':
+@hydra.main(config_path='env-config.yml')
+def main(cfg):
+    print("Running main..")
+    db_path = cfg.db.path or "http://localhost:8000"
+    User.Meta.host = db_path
+    print("Connecting to {}...".format(User.Meta.host))
+
     if not User.exists():
         print("User Table does not exist, creating one...")
     else:
@@ -24,17 +31,17 @@ if __name__ == '__main__':
         print("Deleting and recreating the User Table...")
         User.delete_table()
     User.create_table(read_capacity_units=1, write_capacity_units=1, wait=True)
-
     print("Adding user to the table...")
     user = User(id=0, name="Rohan")
     user.save()
-
     print("Selecting users from User Table...")
     stored_user = User.get(0)
     print(stored_user)
-
     print("Scanning users from User Table...")
     for user in User.scan(User.name == "Rohan"):
         print(user)
-
     print("Exiting...")
+
+
+if __name__ == "__main__":
+    main()
