@@ -1,2 +1,3 @@
 db:
+  service: "aws"
   path: "http://database:8000"

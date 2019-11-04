@@ -1,4 +1,5 @@
 import hydra
+from dotenv import load_dotenv
 from pynamodb.attributes import (
     UnicodeAttribute,
     NumberAttribute)
@@ -19,9 +20,11 @@ class User(Model):
 
 @hydra.main(config_path='env-config.yml')
 def main(cfg):
+    load_dotenv() # Load env. vars
     print("Running main..")
-    db_path = cfg.db.path
-    User.Meta.host = db_path
+    if cfg.db.service == 'docker':
+        db_path = cfg.get('db').get('path') or None
+        User.Meta.host = db_path
     print("Connecting to {}...".format(User.Meta.host))
 
     if not User.exists():
