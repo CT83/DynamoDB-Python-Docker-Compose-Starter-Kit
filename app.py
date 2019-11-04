@@ -51,7 +51,8 @@ def set_config(cfg):
         print("Running with Local DynamoDB...")
         db_path = cfg.get('db').get('path') or None
         User.Meta.host = db_path
-    print("Running with AWS DynamoDB using the credentials in the .env file...")
+    else:
+        print("Running with AWS DynamoDB using the credentials in the .env file...")
 
 
 if __name__ == "__main__":
