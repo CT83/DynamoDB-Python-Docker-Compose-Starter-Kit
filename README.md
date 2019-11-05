@@ -1,6 +1,23 @@
 # DynamoDB-Python-Docker-Compose-Starter-Kit
 A Docker and Docker Compose starter kit to help you get started with AWS DynamoDB quickly.
 
+Use this as a boilerplate for your next project, I already did!
+
+#### What is DynamoDB?
+Amazon DynamoDB is a fully managed proprietary NoSQL database service that supports key-value and document data 
+structures.
+
+
+### What does the `app.py` do?
+
+1. The `app.py` uses Facebook's Hydra Config Management to pickup the desired configuration, from the .yml file and 
+loads it. 
+2. Then a connection is made to a DynamoDB  Instance.
+3. Some basic database operations are performed using the PynamoDB library. 
+
+
+### How to run?
+
 There are 2 modes in which you can run the `app.py` in.
 
 ### 1. Local DynamoDB Mode - 
