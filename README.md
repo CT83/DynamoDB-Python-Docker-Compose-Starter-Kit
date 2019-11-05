@@ -29,6 +29,8 @@ Here, A Local Instance of DynamoDB is spun up using, Docker and Amazon's [Offici
  
 All the database operations are then performed on this local instance.
 
+1. `docker-compose up --build`
+
 ### 2. AWS DynamoDB Mode 
 Here, the `app.py` will connect to the [AWS DynamoDB](https://aws.amazon.com/dynamodb/) Instance, this is how your code might run in the production.
 In this mode you are expected to 
